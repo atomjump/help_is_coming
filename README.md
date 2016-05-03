@@ -16,3 +16,12 @@ Download the .zip file or git clone the repository into the directory loop-serve
 Copy config/configORIGINAL.json to config/config.json
 
 Edit the config file to match your own timeframes on a per forum basis. You can set the default forum as 'default'.
+
+
+## Future Enhancements
+
+* Send response privately to the user
+* Have a time delay before the message gets sent again e.g. one day
+* Don't message the forum's owners
+* Store the ids of forums in the .json file for faster retrieval
+* Have a faster loading of the config with e.g. memcache or nodejs
