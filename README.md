@@ -4,7 +4,7 @@ An AtomJump Loop Server plugin to give users a timeframe for a response
 
 ## Requirements
 
-AtomJump Loop Server >= 0.5.1
+AtomJump Loop Server >= 0.5.3
 
 
 ## Installation
