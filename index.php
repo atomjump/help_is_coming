@@ -5,14 +5,14 @@
     {
         public function on_message($message_forum_id, $message, $message_id, $sender_id, $recipient_id, $sender_name, $sender_email, $sender_phone)
         {
-                       
+            error_log("Message from:" . $sender_id ." to:" . $recipient_id);           
         	if(!isset($help_is_coming_config)) {
                 //Get global plugin config - but only once
                 global $cnf;
                 
                 $path = $cnf['fileRoot'] . "plugins/help_is_coming/config/config.json";
                 
-	            $data = file_get_contents ($path);
+	            $data = file_get_contents($path);
 	            
                 if($data) {
                     $help_is_coming_config = json_decode($data, true);
@@ -74,7 +74,7 @@
             }
             
             if($write_back == true) {
-                //OK save back the config with the new forum ids in it - this is for speed
+                //OK save back the config with the new forum ids in it - this is for speed. 
                 $data = json_encode($help_is_coming_config, JSON_PRETTY_PRINT); //note this pretty print requires PHP ver 5.4
                 file_put_contents($path, $data); 
             
@@ -110,7 +110,6 @@
                         
                     
                         //Send a waiting message
-                        //error_log("About to send to:" . $sender_id);
                         $sender_ip = "192.168.1.1";     //This can be anything
                         
                         //Store a session so that we know this sender sent a message in this forum already
@@ -124,9 +123,10 @@
                         
                         
                         //Now start a parallel process, that waits for a few seconds before removing the message
-                        $command = $help_is_coming_config['serverPath'] . "plugins/help_is_coming/clear.php " . $timeframe . " " . $new_message_id;
+                        $command = $help_is_coming_config['webPath'] . "/plugins/help_is_coming/clear.php?tm=" . $timeframe . "&id=" . $new_message_id;
                         
-                        $api->parallel_system_call($help_is_coming_config['phpPath'] . " " . $command, "linux");
+                       // $api->parallel_system_call($help_is_coming_config['phpPath'] . " " . $command, "linux");
+                        $api->parallel_system_call($help_is_coming_config['webServer'], $command, "linux");
                         
                     }
                 }

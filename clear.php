@@ -24,19 +24,10 @@
 
     $api = new cls_plugin_api();
 
-    if(isset($argv[1]) && isset($argv[2])) {
+ 
     
-        $wait_seconds = $argv[1];      //Get from command line
-        $message_id = $argv[2];
-	
-
-        sleep($wait_seconds);
-        $api->hide_message($message_id);
+    sleep($_REQUEST['tm']);
+    $api->hide_message($_REQUEST['id']);
     
-    } else {
-        error_log("Warning: You need to run help_is_coming/clear.php with a timeframe and message id.");        
-    }
-
-
     
 ?>
