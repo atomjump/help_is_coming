@@ -1,11 +1,10 @@
 {
-    "serverPath": "your_path/loop-server/",
     "phpPath": "/usr/bin/php",
     "forums": [
         {
             "aj": "aj_your_forum",
             "timeframe": 60,
-            "message": "Thanks for your message. Our current response time is estimated at 1 minute. Please hold while we get in touch with your support.",
+            "message": "Thanks for your message. Our current response time is estimated at 1 minute. Please hold while we get in touch with support.",
             "helperName": "Your company",
             "helperEmail": "yourname@yourcompany.com",
             "comeBackWithin": 86400
@@ -13,7 +12,7 @@
         {
             "aj": "default",
             "timeframe": 60,
-            "message": "Thanks for your message. Our current response time is estimated at 1 minute. Please hold while we get in touch with your support.",
+            "message": "Thanks for your message. Our current response time is estimated at 1 minute. Please hold while we get in touch with support.",
             "helperName": "Any helper name for this forum",
             "comeBackWithin": 86400
         }, 
