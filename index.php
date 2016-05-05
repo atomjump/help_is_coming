@@ -5,13 +5,13 @@
     {
         public function on_message($message_forum_id, $message, $message_id, $sender_id, $recipient_id, $sender_name, $sender_email, $sender_phone)
         {
-            error_log("Message from:" . $sender_id ." to:" . $recipient_id);           
+                      
         	if(!isset($help_is_coming_config)) {
                 //Get global plugin config - but only once
                 global $cnf;
                 
                 $path = dirname(__FILE__) . "/config/config.json";
-                error_log("Checking for config at:" . $path);
+                
                 
 	            $data = file_get_contents($path);
 	            
@@ -123,19 +123,14 @@
                         
                         
                         
-                        //Now start a parallel process, that waits for a few seconds before removing the message
-                        //$command = $help_is_coming_config['webPath'] . "/plugins/help_is_coming/clear.php?tm=" . $timeframe . "&id=" . $new_message_id;
-                        
-                        
+                        //Now start a parallel process, that waits for a few seconds before removing the message        
                         $command = $help_is_coming_config['phpPath'] . " " . dirname(__FILE__) . "/clear.php " . $timeframe . " " . $new_message_id;
                         global $staging;
                         if($staging == true) {
                             $command = $command . " staging";   //Ensure this works on a staging server  
                         }
                         
-                        error_log($command); 
                         $api->parallel_system_call($command, "linux");
-                        //$api->parallel_system_call($command, "linux","", $help_is_coming_config['webServer']);
                         
                     }
                 }
