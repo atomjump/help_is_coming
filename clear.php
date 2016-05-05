@@ -25,9 +25,11 @@
     $api = new cls_plugin_api();
 
  
+    if($argv[1] && $argv[2]) {
     
-    sleep($_REQUEST['tm']);
-    $api->hide_message($_REQUEST['id']);
-    
+        sleep($argv[1]);
+        $api->hide_message($argv[2]);
+    }
+       
     
 ?>

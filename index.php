@@ -10,7 +10,8 @@
                 //Get global plugin config - but only once
                 global $cnf;
                 
-                $path = $cnf['fileRoot'] . "plugins/help_is_coming/config/config.json";
+                $path = dirname(__FILE__) . "/config/config.json";
+                error_log("Checking for config at:" . $path);
                 
 	            $data = file_get_contents($path);
 	            
@@ -123,10 +124,11 @@
                         
                         
                         //Now start a parallel process, that waits for a few seconds before removing the message
-                        $command = $help_is_coming_config['webPath'] . "/plugins/help_is_coming/clear.php?tm=" . $timeframe . "&id=" . $new_message_id;
-                        
-                       // $api->parallel_system_call($help_is_coming_config['phpPath'] . " " . $command, "linux");
-                        $api->parallel_system_call($help_is_coming_config['webServer'], $command, "linux");
+                        //$command = $help_is_coming_config['webPath'] . "/plugins/help_is_coming/clear.php?tm=" . $timeframe . "&id=" . $new_message_id;
+                        $command = $help_is_coming_config['phpPath'] . " " . dirname(__FILE__) . "/clear.php " . $timeframe . " " . $new_message_id;
+                        error_log($command); 
+                        $api->parallel_system_call($command, "linux");
+                        //$api->parallel_system_call($command, "linux","", $help_is_coming_config['webServer']);
                         
                     }
                 }
