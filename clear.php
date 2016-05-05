@@ -17,6 +17,9 @@
 
 	$start_path = $help_is_coming_config['serverPath'];
 	$notify = false;
+	if($argv[3]) {      //allow for a staging flag
+	    $staging = true;
+	}
 	include_once($start_path . 'config/db_connect.php');	
 	
     $define_classes_path = $start_path;     //This flag ensures we have access to the typical classes, before the cls.pluginapi.php is included

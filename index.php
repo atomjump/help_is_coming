@@ -125,7 +125,13 @@
                         
                         //Now start a parallel process, that waits for a few seconds before removing the message
                         //$command = $help_is_coming_config['webPath'] . "/plugins/help_is_coming/clear.php?tm=" . $timeframe . "&id=" . $new_message_id;
+                        
+                        
                         $command = $help_is_coming_config['phpPath'] . " " . dirname(__FILE__) . "/clear.php " . $timeframe . " " . $new_message_id;
+                        if($staging == true) {
+                            $command = $command . " staging";   //Ensure this works on a staging server  
+                        }
+                        
                         error_log($command); 
                         $api->parallel_system_call($command, "linux");
                         //$api->parallel_system_call($command, "linux","", $help_is_coming_config['webServer']);
