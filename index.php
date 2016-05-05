@@ -128,7 +128,8 @@
                         
                         
                         $command = $help_is_coming_config['phpPath'] . " " . dirname(__FILE__) . "/clear.php " . $timeframe . " " . $new_message_id;
-                        if($help_is_coming_config['staging'] == true) {
+                        global $staging;
+                        if($staging == true) {
                             $command = $command . " staging";   //Ensure this works on a staging server  
                         }
                         
