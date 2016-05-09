@@ -91,8 +91,8 @@
             } else {
                 if($helper_email != "") {
                 
+                     if(isset($_SESSION['help' . $sender_id . '_' . $message_forum_id])) {
                     
-                    if(isset($_SESSION['help' . $sender_id . '_' . $message_forum_id])) {
                         $now = time();
                         
                         $comeback_time = (intval($_SESSION['help' . $sender_id . '_' . $message_forum_id]) + intval($come_back_within));
@@ -107,9 +107,7 @@
                     //React to this message, it was from another user
                     if($send == true) {
                         //Get the forum id
-                       
-                        
-                    
+                                          
                         //Send a waiting message
                         $sender_ip = "192.168.1.1";     //This can be anything
                         
@@ -121,6 +119,8 @@
                         
                         $new_message_id = $api->new_message($helper, $new_message, $sender_ip . ":" . $sender_id, $helper_email, $sender_ip, $message_forum_id, false);
                         
+                       
+                        
                         
                         
                         //Now start a parallel process, that waits for a few seconds before removing the message        
@@ -129,6 +129,7 @@
                         if($staging == true) {
                             $command = $command . " staging";   //Ensure this works on a staging server  
                         }
+                
                         
                         $api->parallel_system_call($command, "linux");
                         
