@@ -17,6 +17,7 @@ Copy config/configORIGINAL.json to config/config.json
 
 Edit the config file to match your own timeframes on a per forum basis. You can set the default forum as 'default'.
 
+Add "help_is_coming" into the "plugins" array of the server's config/config.json file to activate.
 
 ## Future Enhancements
 
