@@ -11,7 +11,7 @@ AtomJump Loop Server >= 0.5.3
 
 Find the server at https://github.com/atomjump/loop-server. Download and install.
 
-Download the .zip file or git clone the repository into the directory loop-server/plugins/rss_feed
+Download the .zip file or git clone the repository into the directory loop-server/plugins/help_is_coming
 
 Copy config/configORIGINAL.json to config/config.json
 
@@ -21,8 +21,4 @@ Add "help_is_coming" into the "plugins" array of the server's config/config.json
 
 ## Future Enhancements
 
-* Send response privately to the user
-* Have a time delay before the message gets sent again e.g. one day
-* Don't message the forum's owners
-* Store the ids of forums in the .json file for faster retrieval
 * Have a faster loading of the config with e.g. memcache or nodejs
