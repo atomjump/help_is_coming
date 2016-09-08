@@ -1,5 +1,6 @@
 {
     "phpPath": "/usr/bin/php",
+    "storeInDb": false,
     "forums": [
         {
             "aj": "aj_your_forum",

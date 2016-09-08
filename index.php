@@ -81,6 +81,26 @@
             
             }
             
+            if($help_is_coming_config['storeInDb'] == true) {
+                $sql = "SELECT var_help_is_coming_json FROM tbl_layer WHERE int_layer_id = " . $message_forum_id;
+				$result = $api->db_select($sql);
+				if($row = $api->db_fetch_array($result))
+				{
+            		if($row['var_help_is_coming_json']) {
+            			//Ok not null
+            			$forum_config = json_decode($row['var_help_is_coming_json']);
+            			
+            			//Get individual fields
+            			$timeframe = $forum_config['timeframe'];
+						$new_message = $forum_config['message'];
+						$helper = $forum_config['helperName'];
+						$helper_email = $forum_config['helperEmail'];
+						$come_back_within = $forum_config['comeBackWithin'];
+            		}
+            
+            	}
+            }
+            
             
             
             
