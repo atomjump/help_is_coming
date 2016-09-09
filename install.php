@@ -2,7 +2,6 @@
 	if(!isset($help_is_coming_config)) {
         //Get global plugin config - but only once
 		$path = dirname(__FILE__) . "/config/config.json";
-		echo "Searching " . $path;
 		$data = file_get_contents ($path);
         if($data) {
             $help_is_coming_config = json_decode($data, true);
