@@ -39,7 +39,7 @@
 	$sql = "ALTER TABLE tbl_layer ADD COLUMN `var_help_is_coming_json` varchar(2000) DEFAULT NULL";
 	echo "Updating user table. SQL:" . $sql . "\n";
 	$result = $api->db_select($sql);
-	echo "Completed.  Make sure you set storeInDb as 'true' in your config/config.json file, to allow these settings per forum to be stored in the database, rather than just the config.\n";
+	echo "\nCompleted.  Make sure you set storeInDb as 'true' in your config/config.json file, to allow these settings per forum to be stored in the database, rather than just the config.\n";
 	
 
 ?>
