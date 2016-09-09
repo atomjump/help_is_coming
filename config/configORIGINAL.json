@@ -1,6 +1,8 @@
 {
     "phpPath": "/usr/bin/php",
     "storeInDb": false,
+    "staging": false,
+    "serverPath": "your/atomjump/loop/server/path/"
     "forums": [
         {
             "aj": "aj_your_forum",
