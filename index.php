@@ -91,11 +91,11 @@
             			$forum_config = json_decode($row['var_help_is_coming_json']);
             			
             			//Get individual fields
-            			$timeframe = $forum_config['timeframe'];
-						$new_message = $forum_config['message'];
-						$helper = $forum_config['helperName'];
-						$helper_email = $forum_config['helperEmail'];
-						$come_back_within = $forum_config['comeBackWithin'];
+            			$timeframe = $forum_config->timeframe;
+						$new_message = $forum_config->message;
+						$helper = $forum_config->helperName;
+						$helper_email = $forum_config->helperEmail;
+						$come_back_within = $forum_config->comeBackWithin;
             		}
             
             	}
