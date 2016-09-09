@@ -1,10 +1,12 @@
 <?php
-	if(!isset($$help_is_coming_config)) {
+	if(!isset($help_is_coming_config)) {
         //Get global plugin config - but only once
-		$data = file_get_contents (dirname(__FILE__) . "/config/config.json");
+		$path = dirname(__FILE__) . "/config/config.json";
+		echo "Searching " . $path;
+		$data = file_get_contents ($path);
         if($data) {
             $help_is_coming_config = json_decode($data, true);
-            if(!isset($$help_is_coming_config)) {
+            if(!isset($help_is_coming_config)) {
                 echo "Error: help_is_coming config/config.json is not valid JSON.";
                 exit(0);
             }
@@ -18,9 +20,9 @@
   
     }
  
-	$start_path = $$help_is_coming_config['serverPath'];
+	$start_path = $help_is_coming_config['serverPath'];
 	
-	$staging = $$help_is_coming_config['staging'];
+	$staging = $help_is_coming_config['staging'];
 	$notify = false;
 	include_once($start_path . 'config/db_connect.php');	
 	echo "Start path:" . $start_path . "\n";
