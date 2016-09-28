@@ -135,9 +135,10 @@
                         $now = time();
                         $_SESSION['help' . $sender_id . '_' . $message_forum_id] = $now; //Note this happens in 'parallel', and will wait fot the parallel system call below
                         
+                        $options = array('notification' => false);		//turn off any notifications from these messages
                         
                         
-                        $new_message_id = $api->new_message($helper, $new_message, $sender_ip . ":" . $sender_id, $helper_email, $sender_ip, $message_forum_id, false);
+                        $new_message_id = $api->new_message($helper, $new_message, $sender_ip . ":" . $sender_id, $helper_email, $sender_ip, $message_forum_id, $options);
                         
                        
                         
