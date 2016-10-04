@@ -129,7 +129,7 @@
                         //Get the forum id
                                           
                         //Send a waiting message
-                        $sender_ip = "192.168.1.1";     //This can be anything
+                        $sender_ip = $api->get_current_user_ip();
                         
                         //Store a session so that we know this sender sent a message in this forum already
                         $now = time();
