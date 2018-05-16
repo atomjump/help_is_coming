@@ -63,7 +63,8 @@
                     $come_back_within = $help_is_coming_config['forums'][$cnt]['comeBackWithin'];
                     $send = true;
                 } else {
-                    if($help_is_coming_config['forums'][$cnt]['aj'] == 'default') {
+                	//If it is any forum and we haven't already been set with a forum specific message
+                    if(($help_is_coming_config['forums'][$cnt]['aj'] == 'default')&&($send == false)) {
                         $timeframe = $help_is_coming_config['forums'][$cnt]['timeframe'];
                         $new_message = $help_is_coming_config['forums'][$cnt]['message'];
                         $helper = $help_is_coming_config['forums'][$cnt]['helperName'];
