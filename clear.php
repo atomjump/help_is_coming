@@ -31,7 +31,7 @@
     if($argv[1] && $argv[2]) {
     
         sleep($argv[1]);
-        $api->hide_message($argv[2]);
+        $api->hide_message($argv[2], null);
     }
        
     
