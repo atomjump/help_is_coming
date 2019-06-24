@@ -54,7 +54,7 @@
             	if(($help_is_coming_config['forums'][$cnt]['labelRegExp']) && ($layer_name != "")) {
             		//There is a different scaled-up database on this option
             		if(preg_match("/" . $help_is_coming_config['forums'][$cnt]['labelRegExp'] . "/",$layer_name, $matches) == true) {
-            			//Yes, we have a regular expression match on the forum name. The ID is valid for this database.
+            			//Yes, we have a regular expression match on the forum name. The ID is valid for this database (our database connection will already be switched to the regular expression's db).
             			$is_correct_database = true;
             		} else {
             			//The forum we're looking at here is referring to a different scaledUp database. (So the ID doesn't make any sense) 
@@ -63,9 +63,7 @@
             		}
             	}
             	
-            	//Testing
-            	error_log("Checking " . $layer_name . "  is_correct_database = " . $is_correct_database); 
-            
+             
             
             
             	//Get the forum's ID
@@ -98,9 +96,7 @@
                 
                 
               
-              	//Testing
-            	error_log("Message forum id " . $message_forum_id . "  forum_id = " . $forum_id); 
-                
+               
                 
                 if(($message_forum_id == $forum_id)&&($is_correct_database == true)) {
                 	//Yes, we're looking at the correct forum directly based on the ID
@@ -116,6 +112,7 @@
                 	//We're looking at any other forum than the current message is on
                 	
                 	//Check if this is a 'default' option, so we set the fall-through.
+                	$send = false;		//Testing in here REMOVEME!
                 	 if(($help_is_coming_config['forums'][$cnt]['aj'] == 'default')&&($send == false)&&($is_correct_database == true)) {
                     		//Definitely a default option (and we don't already have one i.e. $send has not been flagged). And from the correct scaled up database. Use this message.
 		                    $timeframe = $help_is_coming_config['forums'][$cnt]['timeframe'];
@@ -125,15 +122,11 @@
 		                    $come_back_within = $help_is_coming_config['forums'][$cnt]['comeBackWithin'];
 		                    $send = true;
 		                    
-		                    //Testing
-		                    error_log("Message now : " . $new_message);
-                    }
+	                  }
                 }
             }
             
-            //Testing
-            error_log("Final Message : " . $new_message);
-            
+           
             if($write_back == true) {
                 //OK save back the config with the new forum ids in it - this is for speed. 
                 $data = json_encode($help_is_coming_config, JSON_PRETTY_PRINT); //note this pretty print requires PHP ver 5.4
