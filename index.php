@@ -112,8 +112,9 @@
                 	//We're looking at any other forum than the current message is on
                 	
                 	//Check if this is a 'default' option, so we set the fall-through.
-                	if(($help_is_coming_config['forums'][$cnt]['aj'] == 'default')&&($send == false)&&($is_correct_database == true)) {
-                    		//Definitely a default option (and we don't already have one i.e. $send has not been flagged). And from the correct scaled up database. Use this message.
+                	if(($help_is_coming_config['forums'][$cnt]['aj'] == 'default')&&($is_correct_database == true)) {
+                    		//Definitely a default option. And from the correct scaled up database. Use this message. The last
+                    		//database listed correctly will be the one used (i.e. it will override the master database option)
 		                    $timeframe = $help_is_coming_config['forums'][$cnt]['timeframe'];
 		                    $new_message = $help_is_coming_config['forums'][$cnt]['message'];
 		                    $helper = $help_is_coming_config['forums'][$cnt]['helperName'];
