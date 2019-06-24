@@ -150,6 +150,7 @@
 						$helper = $forum_config->helperName;
 						$helper_email = $forum_config->helperEmail;
 						$come_back_within = $forum_config->comeBackWithin;
+						$send = true;
             		}
             
             	}
