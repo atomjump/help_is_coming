@@ -62,6 +62,9 @@
             		
             		}
             	}
+            	
+            	//Testing
+            	error_log("Checking " . $layer_name . "  is_correct_database = " . $is_correct_database); 
             
             
             
@@ -95,6 +98,8 @@
                 
                 
               
+              	//Testing
+            	error_log("Message forum id " . $message_forum_id . "  forum_id = " . $forum_id); 
                 
                 
                 if(($message_forum_id == $forum_id)&&($is_correct_database == true)) {
@@ -119,9 +124,15 @@
 		                    $helper_email = $help_is_coming_config['forums'][$cnt]['helperEmail'];
 		                    $come_back_within = $help_is_coming_config['forums'][$cnt]['comeBackWithin'];
 		                    $send = true;
+		                    
+		                    //Testing
+		                    error_log("Message now : " . $new_message);
                     }
                 }
             }
+            
+            //Testing
+            error_log("Final Message : " . $new_message);
             
             if($write_back == true) {
                 //OK save back the config with the new forum ids in it - this is for speed. 
