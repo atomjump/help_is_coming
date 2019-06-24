@@ -26,6 +26,7 @@ Edit the config file to match your own timeframes on a per forum basis. You can 
     "forums": [
         {
             "aj": "aj_your_forum_name",			//The forum this applies to, 'default' will apply to all unspecified forums in this list.
+            "labelRegExp": "^your_specific_forum_string_start",		//Optional: regular expression used for different 'default' messages when there are several scaleUp databases
             "timeframe": "In seconds this message will remain on the group",
             "message": "The message that gets sent.",
             "helperName": "Any helper name for this forum - this will appear as the author of the automated message",
