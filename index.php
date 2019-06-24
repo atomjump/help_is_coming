@@ -199,7 +199,7 @@
                         
                         
                         //Now start a parallel process, that waits for a few seconds before removing the message        
-                        $command = $help_is_coming_config['phpPath'] . " " . dirname(__FILE__) . "/clear.php " . $timeframe . " " . $new_message_id;
+                        $command = $help_is_coming_config['phpPath'] . " " . dirname(__FILE__) . "/clear.php " . $timeframe . " " . $new_message_id . " " . $layer_name;
                         global $staging;
                         if($staging == true) {
                             $command = $command . " staging";   //Ensure this works on a staging server  

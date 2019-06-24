@@ -17,7 +17,12 @@
 
 	$start_path = $help_is_coming_config['serverPath'];
 	$notify = false;
-	if($argv[3]) {      //allow for a staging flag
+	if($argv[3]) { 		//This is the layer name
+		//Set the global layer val, so that this is the correct database to delete this message on
+		$_REQUEST['passcode'] = $argv[3];
+	}
+	
+	if($argv[4]) {      //allow for a staging flag
 	    $staging = true;
 	}
 	include_once($start_path . 'config/db_connect.php');	
