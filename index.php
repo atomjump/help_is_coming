@@ -33,29 +33,74 @@
             //Loop through each of the forums
             $send = false;
             
-            
+            //Get the layer name, if available
+            $layer_name = "";
+            if(isset($_REQUEST['passcode'])) {
+				$layer_name = $_REQUEST['passcode'];			
+			}
+		
+			if(isset($_REQUEST['uniqueFeedbackId'])) {
+				$layer_name = $_REQUEST['uniqueFeedbackId'];
+			}
             
             
             
             $write_back = false;
+            //Loop through our config file array
             for($cnt = 0; $cnt < count($help_is_coming_config['forums']); $cnt++) {
             
+            	//Check if we are a scaled-up option
+                $is_correct_database = true;	//Does any forum ID match the IDs of the current database. By default it does.
+            	if(($help_is_coming_config['forums'][$cnt]['labelRegExp']) && ($layer_name != "")) {
+            		//There is a different scaled-up database on this option
+            		if(preg_match("/" . $help_is_coming_config['forums'][$cnt]['labelRegExp'] . "/",$layer_name, $matches) == true) {
+            			//Yes, we have a regular expression match on the forum name. The ID is valid for this database.
+            			$is_correct_database = true;
+            		} else {
+            			//The forum we're looking at here is referring to a different scaledUp database. (So the ID doesn't make any sense) 
+            			$is_correct_database = false;
+            		
+            		}
+            	}
+            
+            
+            
+            	//Get the forum's ID
                 if(isset($help_is_coming_config['forums'][$cnt]['forum_id'])) {
+                	//The fast option id based method
                     $forum_id = $help_is_coming_config['forums'][$cnt]['forum_id'];
                 } else {
                     if($help_is_coming_config['forums'][$cnt]['aj'] != 'default') {
-                        $forum_info = $api->get_forum_id($help_is_coming_config['forums'][$cnt]['aj']);
-                        $forum_id = $forum_info['forum_id'];                    
-                        $help_is_coming_config['forums'][$cnt]['forum_id'] = $forum_id;
-                        $write_back = true;
+                    	//It is a config file specified forum (and not a 'default' option)
+                    
+                    	if($is_correct_database == true) {
+		                	//Normal option, need to get the forum id of this forum from the main db
+		                	//and set it so that it is a faster check next time.
+		                    $forum_info = $api->get_forum_id($help_is_coming_config['forums'][$cnt]['aj']);
+		                    $forum_id = $forum_info['forum_id'];                    
+		                    $help_is_coming_config['forums'][$cnt]['forum_id'] = $forum_id;
+		                    $write_back = true;
+		                } else {
+		                	//We have no way of getting this forum's ID from the database, since it is a different database. Keep an unknown
+		                	//forum_id for below.
+		                	$forum_id = null;
+		                
+		                }
                     } else {
+                    	//The database's default. Keep an unknown forum_id for below.
                         $forum_id = null;
                     }
                 }
+                //Have the forum's ID now...
                 
                 
-                if($message_forum_id == $forum_id) {
-                    //Yep this forum has a wait time specifically for it
+              
+                
+                
+                if(($message_forum_id == $forum_id)&&($is_correct_database == true)) {
+                	//Yes, we're looking at the correct forum directly based on the ID
+                	
+                    //This forum has a wait time specifically for it
                     $timeframe = $help_is_coming_config['forums'][$cnt]['timeframe'];
                     $new_message = $help_is_coming_config['forums'][$cnt]['message'];
                     $helper = $help_is_coming_config['forums'][$cnt]['helperName'];
@@ -63,14 +108,17 @@
                     $come_back_within = $help_is_coming_config['forums'][$cnt]['comeBackWithin'];
                     $send = true;
                 } else {
-                	//If it is any forum and we haven't already been set with a forum specific message
-                    if(($help_is_coming_config['forums'][$cnt]['aj'] == 'default')&&($send == false)) {
-                        $timeframe = $help_is_coming_config['forums'][$cnt]['timeframe'];
-                        $new_message = $help_is_coming_config['forums'][$cnt]['message'];
-                        $helper = $help_is_coming_config['forums'][$cnt]['helperName'];
-                        $helper_email = $help_is_coming_config['forums'][$cnt]['helperEmail'];
-                        $come_back_within = $help_is_coming_config['forums'][$cnt]['comeBackWithin'];
-                        $send = true;
+                	//We're looking at any other forum than the current message is on
+                	
+                	//Check if this is a 'default' option, so we set the fall-through.
+                	 if(($help_is_coming_config['forums'][$cnt]['aj'] == 'default')&&($send == false)&&($is_correct_database == true)) {
+                    		//Definitely a default option (and we don't already have one i.e. $send has not been flagged). And from the correct scaled up database. Use this message.
+		                    $timeframe = $help_is_coming_config['forums'][$cnt]['timeframe'];
+		                    $new_message = $help_is_coming_config['forums'][$cnt]['message'];
+		                    $helper = $help_is_coming_config['forums'][$cnt]['helperName'];
+		                    $helper_email = $help_is_coming_config['forums'][$cnt]['helperEmail'];
+		                    $come_back_within = $help_is_coming_config['forums'][$cnt]['comeBackWithin'];
+		                    $send = true;
                     }
                 }
             }
@@ -83,6 +131,7 @@
             }
             
             if($help_is_coming_config['storeInDb'] == true) {
+            	//Use the set of values from the database as an override to any config file specified version
                 $sql = "SELECT var_help_is_coming_json FROM tbl_layer WHERE int_layer_id = " . $message_forum_id;
 				$result = $api->db_select($sql);
 				if($row = $api->db_fetch_array($result))

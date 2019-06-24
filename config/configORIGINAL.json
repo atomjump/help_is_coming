@@ -27,7 +27,17 @@
             "helperName": "Any helper name for this forum",
             "helperEmail": "This email must be set, and must not be anyone else's email.",
             "comeBackWithin": "This is the number of seconds when the user can come back and not be notified of timeframe. 86400 = 1 day"
+        },
+        {
+            "aj": "default",
+            "labelRegExp": "^your_specific_forum_string_start",
+            "timeframe": "In seconds this message will remain on the group",
+            "message": "The message that gets sent.",
+            "helperName": "Any helper name for this forum",
+            "helperEmail": "This email must be set, and must not be anyone else's email.",
+            "comeBackWithin": "This is the number of seconds when the user can come back and not be notified of timeframe. 86400 = 1 day"
         }
+        
     ]
 
 
