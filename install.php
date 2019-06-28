@@ -1,9 +1,9 @@
 <?php
-	function trim_trailing_slash($str) {
+	function trim_trailing_slash_local($str) {
         return rtrim($str, "/");
     }
     
-    function add_trailing_slash($str) {
+    function add_trailing_slash_local($str) {
         //Remove and then add
         return rtrim($str, "/") . '/';
     }
@@ -28,7 +28,7 @@
   
     }
  
-	$start_path = add_trailing_slash($help_is_coming_config['serverPath']);
+	$start_path = add_trailing_slash_local($help_is_coming_config['serverPath']);
 	
 	$staging = $help_is_coming_config['staging'];
 	$notify = false;
