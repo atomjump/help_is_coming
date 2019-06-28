@@ -1,5 +1,13 @@
 <?php
-
+    function trim_trailing_slash($str) {
+        return rtrim($str, "/");
+    }
+    
+    function add_trailing_slash($str) {
+        //Remove and then add
+        return rtrim($str, "/") . '/';
+    }
+    
     if(!isset($help_is_coming_config)) {
         //Get global plugin config - but only once
         $data = file_get_contents (dirname(__FILE__) . "/config/config.json");
@@ -15,7 +23,7 @@
         }
     }
 
-	$start_path = $help_is_coming_config['serverPath'];
+	$start_path = add_trailing_slash($help_is_coming_config['serverPath']);
 	$notify = false;
 	if($argv[3]) { 		//This is the layer name
 		//Set the global layer val, so that this is the correct database to delete this message on

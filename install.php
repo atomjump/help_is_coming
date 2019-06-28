@@ -1,4 +1,13 @@
 <?php
+	function trim_trailing_slash($str) {
+        return rtrim($str, "/");
+    }
+    
+    function add_trailing_slash($str) {
+        //Remove and then add
+        return rtrim($str, "/") . '/';
+    }
+
 	if(!isset($help_is_coming_config)) {
         //Get global plugin config - but only once
 		$path = dirname(__FILE__) . "/config/config.json";
@@ -19,7 +28,7 @@
   
     }
  
-	$start_path = $help_is_coming_config['serverPath'];
+	$start_path = add_trailing_slash($help_is_coming_config['serverPath']);
 	
 	$staging = $help_is_coming_config['staging'];
 	$notify = false;
