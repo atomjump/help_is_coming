@@ -1,17 +1,17 @@
 # help_is_coming
-An AtomJump Loop Server plugin to give users a timeframe for a response
+An AtomJump Messaging Server plugin to give users a timeframe for a response
 
 
 ## Requirements
 
-AtomJump Loop Server >= 0.5.3
+AtomJump Messaging Server >= 0.5.3
 
 
 ## Installation
 
 Find the server at https://src.atomjump.com/atomjump/loop-server. Download and install.
 
-Download the .zip file or git clone this repository into the directory loop-server/plugins/help_is_coming
+Download the .zip file or git clone this repository into the directory messaging-server/plugins/help_is_coming
 
 Copy config/configORIGINAL.json to config/config.json
 
@@ -21,8 +21,8 @@ Edit the config file to match your own timeframes on a per forum basis. You can 
 {
     "phpPath": "\/usr\/bin\/php",			//Note escaping the '/' may be necessary
     "storeInDb": false,						//Switch this to true if you wish to set this per forum within the database
-    "staging": false,						//false is to use the staging version of the loop-server config
-    "serverPath": "your\/atomjump\/loop\/server\/path\/"
+    "staging": false,						//false is to use the staging version of the messaging-server config
+    "serverPath": "your\/atomjump\/messaging\/server\/path\/"
     "forums": [
         {
             "aj": "aj_your_forum_name",			//The forum this applies to, 'default' will apply to all unspecified forums in this list.
