@@ -179,7 +179,7 @@
                             //Store a session so that we know this sender sent a message in this forum already
                         	$now = time();
                         	$_SESSION['help' . $sender_id . '_' . $message_forum_id] = $now; //Note this happens in 'parallel', and will wait fot the parallel system call below
-                       
+                       		error_log("New last post set to " . $now);	//TESTING
                             
                             //Exit and don't send the user a message
                             return true;
