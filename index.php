@@ -174,6 +174,14 @@
                         
                         if($now < $comeback_time) {
                             //More than one day after we last posted e.g. $come_back_within = (60*60*24)
+                            
+                            //Update out last message posted date/time
+                            //Store a session so that we know this sender sent a message in this forum already
+                        	$now = time();
+                        	$_SESSION['help' . $sender_id . '_' . $message_forum_id] = $now; //Note this happens in 'parallel', and will wait fot the parallel system call below
+                       
+                            
+                            //Exit and don't send the user a message
                             return true;
                         }
                     }
