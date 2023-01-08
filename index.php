@@ -178,10 +178,9 @@
                             //Update out last message posted date/time
                             //Store a session so that we know this sender sent a message in this forum already
                         	$now = time();
-                        	$_SESSION['help' . $sender_id . '_' . $message_forum_id] = $now; //Note this happens in 'parallel', and will wait fot the parallel system call below
-                       		error_log("New last post set to " . $now);	//TESTING
-                            
-                            //Exit and don't send the user a message
+                        	$_SESSION['help' . $sender_id . '_' . $message_forum_id] = $now;
+                             
+                            //Exit early and don't send the user a message - the session should be updated by the surrounding script 
                             return true;
                         }
                     }
@@ -196,7 +195,7 @@
                         
                         //Store a session so that we know this sender sent a message in this forum already
                         $now = time();
-                        $_SESSION['help' . $sender_id . '_' . $message_forum_id] = $now; //Note this happens in 'parallel', and will wait fot the parallel system call below
+                        $_SESSION['help' . $sender_id . '_' . $message_forum_id] = $now; //Note this happens in 'parallel', and will wait for the parallel system call below
                         
                         $options = array('notification' => false);		//turn off any notifications from these messages
                         
