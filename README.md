@@ -1,4 +1,7 @@
 # help_is_coming
+
+__WARNING: this project has now moved to https://src.atomjump.com/atomjump/help_is_coming.git__
+
 An AtomJump Messaging Server plugin to give users a timeframe for a response
 
 
